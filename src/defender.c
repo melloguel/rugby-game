@@ -19,11 +19,18 @@
 direction_t execute_defender_strategy(
     position_t defender_position, Spy attacker_spy) {
   // TODO: unused parameters, remove these lines later
-  UNUSED(defender_position);
-  UNUSED(attacker_spy);
+  UNUSED(attacker_spy); // Who needs a spy?
+  static int up = 1;
+  static position_t position = INVALID_POSITION;
 
-  // TODO: Implement Defender logic here
-  return (direction_t) DIR_LEFT;
+  if (equal_positions(defender_position, position)) {
+    up ^= 1;
+  }
+
+  position = defender_position;
+
+  if (up) return (direction_t) DIR_UP;
+  else    return (direction_t) DIR_DOWN;
 }
 
 /*----------------------------------------------------------------------------*/
